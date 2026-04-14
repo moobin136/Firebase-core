@@ -86,12 +86,7 @@ class AuthView extends GetView<AuthController> {
                         },
                       ),
                       //custom text
-                      const Text(
-                        '',
-                        style: TextStyle(color: Colors.red),
-                      ),
-
-
+                      const Spacer(),
                     ],
                   ),
                 ),
