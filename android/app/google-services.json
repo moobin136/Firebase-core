@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "732893845443",
+    "project_id": "fir-core-1035a",
+    "storage_bucket": "fir-core-1035a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:732893845443:android:0f6037850489a9e6e78f76",
+        "android_client_info": {
+          "package_name": "com.example.firbase_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHm_pXSQ7zaVIULgWmPP4HNKRpx9-GE2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,118 @@
+mutation CreateDemoData @transaction @auth(level: USER, insecureReason: "This is a seed mutation and should only be run by an authenticated user.") {
+  user_insertMany(data: [
+    {
+      id: "b4c1a2d3-e5f6-7890-1234-567890abcdef",
+      displayName: "Alice Smith",
+      email: "alice.smith@example.com",
+      createdAt: "2023-01-15T10:00:00Z"
+    },
+    {
+      id: "a1b2c3d4-e5f6-7890-1234-567890fedcba",
+      displayName: "Bob Johnson",
+      email: "bob.johnson@example.com",
+      createdAt: "2023-02-20T11:30:00Z"
+    }
+  ])
+  movie_insertMany(data: [
+    {
+      id: "1a2b3c4d-5e6f-7890-1234-567890abcdef",
+      title: "The Great Adventure",
+      year: 2022,
+      summary: "A thrilling journey through unknown lands.",
+      genres: ["Adventure", "Action"],
+      runtime: 120,
+      createdAt: "2023-03-01T08:00:00Z"
+    },
+    {
+      id: "9f8e7d6c-5b4a-3210-fedc-ba9876543210",
+      title: "Mystery in the Moonlight",
+      year: 2021,
+      summary: "A detective unravels a perplexing mystery under the moonlight.",
+      genres: ["Mystery", "Thriller"],
+      runtime: 105,
+      createdAt: "2023-04-10T14:15:00Z"
+    }
+  ])
+  movieList_insertMany(data: [
+    {
+      id: "c7d8e9f0-a1b2-3456-7890-1234567890ab",
+      userId: "b4c1a2d3-e5f6-7890-1234-567890abcdef",
+      name: "Alice's Favorites",
+      isPublic: true,
+      description: "My top movie picks!",
+      createdAt: "2023-05-01T09:00:00Z",
+      updatedAt: "2023-05-01T09:00:00Z"
+    },
+    {
+      id: "f1e2d3c4-b5a6-7890-1234-567890fedcba",
+      userId: "a1b2c3d4-e5f6-7890-1234-567890fedcba",
+      name: "Bob's Action List",
+      isPublic: false,
+      description: "Movies for when I need some action.",
+      createdAt: "2023-06-10T12:00:00Z",
+      updatedAt: "2023-06-10T12:00:00Z"
+    }
+  ])
+  movieListItem_insertMany(data: [
+    {
+      movieListId: "c7d8e9f0-a1b2-3456-7890-1234567890ab",
+      movieId: "1a2b3c4d-5e6f-7890-1234-567890abcdef",
+      position: 1,
+      note: "A must-watch for adventure lovers."
+    },
+    {
+      movieListId: "c7d8e9f0-a1b2-3456-7890-1234567890ab",
+      movieId: "9f8e7d6c-5b4a-3210-fedc-ba9876543210",
+      position: 2,
+      note: "Kept me on the edge of my seat."
+    },
+    {
+      movieListId: "f1e2d3c4-b5a6-7890-1234-567890fedcba",
+      movieId: "1a2b3c4d-5e6f-7890-1234-567890abcdef",
+      position: 1,
+      note: "Great action sequences!"
+    }
+  ])
+  watch_insertMany(data: [
+    {
+      id: "e0f1g2h3-i4j5-6789-abcd-ef0123456789",
+      userId: "b4c1a2d3-e5f6-7890-1234-567890abcdef",
+      movieId: "1a2b3c4d-5e6f-7890-1234-567890abcdef",
+      createdAt: "2023-05-10T18:00:00Z",
+      watchDate: "2023-05-10",
+      location: "Home"
+    },
+    {
+      id: "p9o8n7m6-l5k4-3210-fedc-ba9876543210",
+      userId: "a1b2c3d4-e5f6-7890-1234-567890fedcba",
+      movieId: "1a2b3c4d-5e6f-7890-1234-567890abcdef",
+      createdAt: "2023-06-15T20:00:00Z",
+      watchDate: "2023-06-15",
+      location: "Cinema"
+    }
+  ])
+  review_insertMany(data: [
+    {
+      id: "r1e2v3i4-e5w6-7890-1234-567890abcdef",
+      userId: "b4c1a2d3-e5f6-7890-1234-567890abcdef",
+      movieId: "1a2b3c4d-5e6f-7890-1234-567890abcdef",
+      watchId: "e0f1g2h3-i4j5-6789-abcd-ef0123456789",
+      rating: 5,
+      createdAt: "2023-05-11T09:00:00Z",
+      updatedAt: "2023-05-11T09:00:00Z",
+      text: "Absolutely loved this movie! The plot was fantastic.",
+      isPublic: true
+    },
+    {
+      id: "s9t8u7v6-w5x4-3210-fedc-ba9876543210",
+      userId: "a1b2c3d4-e5f6-7890-1234-567890fedcba",
+      movieId: "1a2b3c4d-5e6f-7890-1234-567890abcdef",
+      watchId: "p9o8n7m6-l5k4-3210-fedc-ba9876543210",
+      rating: 4,
+      createdAt: "2023-06-16T10:00:00Z",
+      updatedAt: "2023-06-16T10:00:00Z",
+      text: "A very enjoyable action movie, highly recommended.",
+      isPublic: false
+    }
+  ])
+}
