@@ -6,7 +6,7 @@ class AuthView extends GetView<AuthController> {
 
   @override
   Widget build(BuildContext context) {
-    final textThem = Theme.of(context).textTheme; // এটাই সঠিক উপায়
+    final textThem = Theme.of(context).textTheme;
 
     return Scaffold(
       body: SafeArea(
@@ -33,6 +33,16 @@ class AuthView extends GetView<AuthController> {
                 ),
               ),
             ),
+            //text
+            Text(
+              textAlign: TextAlign.center,
+              'সুপার QR-এ দিয়ে পেমেন্ট নিন বিকাশ, রকেট ও নগদে \nসহ সকল ব্যাংক থেকে পেমেন্ট করুন।',
+              style: textThem.bodyMedium?.copyWith(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
+            ),
 
             // Main Content
             Expanded(
@@ -41,23 +51,20 @@ class AuthView extends GetView<AuthController> {
                 child: Form(
                   key: controller.formKey,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 40),
-
-                      // Description Text
+                      const SizedBox(
+                        height: 16,
+                      ),
                       Text(
-                        textAlign: TextAlign.center,
-                        'সুপার QR-এ দিয়ে পেমেন্ট নিন বিকাশ, রকেট ও নগদে \nসহ সকল ব্যাংক থেকে পেমেন্ট করুন।',
-                        style: textThem.bodyMedium?.copyWith(
-                          color: Colors.black,
+                        'লগইন/রেজিস্ট্রেশন করুন',
+                        style: textThem.headlineMedium?.copyWith(
+                          color: Colors.grey.shade800,
                           fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                          fontSize: 22,
                         ),
                       ),
-
-                      const SizedBox(height: 60),
-
-                      // Phone Input Field
+                      const SizedBox(height: 8),
                       TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         controller: controller.phoneController,
@@ -65,8 +72,7 @@ class AuthView extends GetView<AuthController> {
                         maxLength: 11,
                         validator: controller.validatePhone,
                         decoration: const InputDecoration(
-                          prefixIcon:
-                              const Icon(Icons.phone, color: Colors.red),
+                          prefixIcon: Icon(Icons.phone, color: Colors.red),
                           labelText: 'লগইন ও রেজিস্ট্রেশন করুন',
                           hintText: '+8801*********',
                           helperText:
@@ -74,19 +80,12 @@ class AuthView extends GetView<AuthController> {
                         ),
                       ),
                       const Spacer(),
-
-                      // Login Button
                       CustomELButton(
+                        buttonType: ButtonType.enabled,
+                        isLoading: false,
                         textThem: textThem,
                         text: 'পরবর্তী',
-                        onTap: () {
-                          if (controller.formKey.currentState!.validate()) {
-                            controller.login();
-                          }
-                        },
-                      ),
-                      //custom text
-                      const Spacer(),
+                      )
                     ],
                   ),
                 ),
