@@ -1,4 +1,4 @@
-import 'package:firbase_test/app/modules/auth/controllers/auth_controller.dart';
+import 'package:firbase_test/app/modules/authh/auth/controllers/auth_controller.dart';
 import 'package:firbase_test/export.dart';
 
 class AuthView extends GetView<AuthController> {
@@ -7,6 +7,7 @@ class AuthView extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     final textThem = Theme.of(context).textTheme;
+    print(controller.number);
 
     return Scaffold(
       body: SafeArea(
@@ -53,9 +54,7 @@ class AuthView extends GetView<AuthController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      const SizedBox(height: 16),
                       Text(
                         'লগইন/রেজিস্ট্রেশন করুন',
                         style: textThem.headlineMedium?.copyWith(
@@ -66,26 +65,41 @@ class AuthView extends GetView<AuthController> {
                       ),
                       const SizedBox(height: 8),
                       TextFormField(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         controller: controller.phoneController,
+                        onChanged: controller.handlePhoneChange,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         keyboardType: TextInputType.phone,
-                        maxLength: 11,
-                        validator: controller.validatePhone,
+                        maxLength: 10,
+                        validator: (value) => controller.validatePhone(value),
                         decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.phone, color: Colors.red),
+                          prefixIcon: Icon(Icons.phone, color: Colors.grey),
                           labelText: 'লগইন ও রেজিস্ট্রেশন করুন',
-                          hintText: '+8801*********',
-                          helperText:
-                              'আপনের নিবন্ধিত NID দিয়ে মোবাইল নম্বর দিন',
+                          prefixText: '+880',
+                          hintText: '1XXXXXXXX',
                         ),
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          // LengthLimitingTextInputFormatter(10)
+                        ],
                       ),
                       const Spacer(),
-                      CustomELButton(
-                        buttonType: ButtonType.enabled,
-                        isLoading: false,
-                        textThem: textThem,
-                        text: 'পরবর্তী',
-                      )
+                      Obx(() {
+                        return CustomButton(
+                          isLoading: false,
+                          onTap: controller.onTapLoginButton,
+                          // onTap: () {
+                          //   if (controller.formKey.currentState!.validate()) {
+                          //     print('Valid: 0${controller.number.value}');
+                          //     Get.toNamed(Routes.HOME);
+                          //   }
+                          // },
+                          textTheme: textThem,
+                          buttonTrype: controller.number.value.length < 10
+                              ? ButtonTrype.DISABLE
+                              : ButtonTrype.ENABLE,
+                          text: 'পরবর্তী',
+                        );
+                      })
                     ],
                   ),
                 ),
