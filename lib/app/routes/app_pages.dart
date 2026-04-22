@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 
+import '../modules/auth/otp/bindings/otp_binding.dart';
+import '../modules/auth/otp/views/otp_view.dart';
 import '../modules/authh/auth/bindings/auth_binding.dart';
 import '../modules/authh/auth/views/auth_view.dart';
-
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
@@ -30,7 +31,13 @@ class AppPages {
       name: _Paths.AUTH,
       page: () => const AuthView(),
       binding: AuthBinding(),
+      children: [
+        GetPage(
+          name: _Paths.OTP,
+          page: () => const OtpView(),
+          binding: OtpBinding(),
+        ),
+      ],
     ),
-
   ];
 }
