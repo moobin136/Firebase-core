@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 
-import '../modules/auth/bindings/auth_binding.dart';
-import '../modules/auth/views/auth_view.dart';
+import '../modules/authh/auth/bindings/auth_binding.dart';
+import '../modules/authh/auth/views/auth_view.dart';
+
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
@@ -30,5 +31,6 @@ class AppPages {
       page: () => const AuthView(),
       binding: AuthBinding(),
     ),
+
   ];
 }
